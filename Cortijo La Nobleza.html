@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="title">Cortijo Rural La Nobleza</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('images/logo.png') center center no-repeat fixed;
+      background-size: 65%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      opacity: 0.98;
+    }
+    .fullscreen-gallery {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      flex-direction: column;
+    }
+    .fullscreen-gallery img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .nav-arrow {
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-left { left: 2rem; }
+    .nav-right { right: 2rem; }
+    [data-i18n="gallery_title"],
+    [data-i18n="docs_title"] {
+    color: green;
+    } 
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-serif">
+
+  <!-- Encabezado -->
+  <header class="bg-white shadow relative">
+    <div class="max-w-7xl mx-auto py-6 px-4 text-center">
+      <h1 class="text-4xl font-bold" data-i18n="header_title">Cortijo Rural La Nobleza</h1>
+    </div>
+    <div class="absolute top-2 right-4 space-x-3">
+      <button onclick="cambiarIdioma('es')" class="text-sm text-gray-700 hover:underline">ES</button>
+      <button onclick="cambiarIdioma('en')" class="text-sm text-gray-700 hover:underline">EN</button>
+      <button onclick="cambiarIdioma('fr')" class="text-sm text-gray-700 hover:underline">FR</button>
+      <button onclick="cambiarIdioma('de')" class="text-sm text-gray-700 hover:underline">DE</button>
+    </div>
+  </header>
+
+  <!-- Imagen principal -->
+  <div class="max-w-7xl mx-auto p-4">
+    <img src="images/imagen-principal.jpg" alt="Cortijo Rural La Nobleza" class="w-full rounded-2xl shadow-lg" />
+  </div>
+
+  <!-- Presentación -->
+  <section class="max-w-5xl mx-auto px-6 py-12 bg-white bg-opacity-90 rounded-xl shadow space-y-6">
+    <h2 class="text-4xl font-bold text-center text-green-900 tracking-wide" data-i18n="welcome_title">Bienvenidos a Cortijo Rural La Nobleza</h2>
+    <p class="text-center text-base italic text-gray-600" data-i18n="welcome_subtitle">Un rincón de calma y autenticidad en el corazón de Andalucía</p>
+
+    <p class="text-lg leading-relaxed" data-i18n="welcome_text_1">
+      Ubicado entre los montes y olivares de Archidona, el <strong>Cortijo Rural La Nobleza</strong> ofrece una experiencia única para quienes buscan tranquilidad, historia y naturaleza. Un lugar donde el tiempo parece detenerse, y cada amanecer se acompaña del murmullo del campo.
+    </p>
+
+    <h3 class="text-2xl font-semibold text-red-800" data-i18n="gastronomy_title">Gastronomía con tradición</h3>
+    <p data-i18n="gastronomy_text">
+      Disfruta de la cocina casera de la comarca, desde platos de cuchara hasta embutidos, carnes asadas y quesos locales, acompañados por los mejores aceites de oliva virgen extra.
+    </p>
+
+    <h3 class="text-2xl font-semibold text-blue-800" data-i18n="culture_title">Entorno cultural y monumental</h3>
+    <p data-i18n="culture_text">
+      A pocos minutos encontrarás joyas patrimoniales como la Plaza Ochavada de Archidona, iglesias centenarias y rutas históricas que evocan el pasado árabe y cristiano de la región.
+    </p>
+
+    <h3 class="text-2xl font-semibold text-green-800" data-i18n="nature_title">Naturaleza viva</h3>
+    <p data-i18n="nature_text">
+      Rodeado de senderos, el cortijo es punto de partida ideal para rutas a pie o en bicicleta. Respira aire puro, contempla los cielos limpios y relájate en el silencio del entorno natural.
+    </p>
+
+    <h3 class="text-2xl font-semibold text-yellow-700" data-i18n="connection_title">Conexión excelente</h3>
+    <ul class="list-disc ml-6" data-i18n="connection_list">
+      <li>A 20 min de Antequera</li>
+      <li>A 45 min de Málaga</li>
+      <li>A 1 h de Granada</li>
+      <li>A 1 h y 15 min de Córdoba</li>
+      <li>A 1 h y 45 min de Sevilla</li>
+    </ul>
+
+    <p data-i18n="welcome_text_2">
+      <strong>Cortijo La Nobleza</strong> es más que un alojamiento: es una invitación a vivir Andalucía con los cinco sentidos.
+    </p>
+  </section>
+
+  <!-- Galería de imágenes -->
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-semibold mb-4" data-i18n="gallery_title">Galería</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery">
+      <img src="images/img1.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(0)" alt="Imagen 1" />
+      <img src="images/img2.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(1)" alt="Imagen 2" />
+      <img src="images/img3.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(2)" alt="Imagen 3" />
+      <img src="images/img4.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(3)" alt="Imagen 4" />
+      <img src="images/img5.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(4)" alt="Imagen 5" />
+      <img src="images/img6.jpg" class="rounded-lg shadow cursor-pointer" onclick="openGallery(5)" alt="Imagen 6" />
+    </div>
+    <div class="text-center mt-6">
+      <button onclick="openGallery(0)" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" data-i18n="gallery_button">Ver más fotos</button>
+    </div>
+  </section>
+
+  <!-- Documentos descargables -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <h2 class="text-xl font-semibold mb-3" data-i18n="docs_title">Documentos importantes</h2>
+    <div class="flex flex-col md:flex-row gap-4">
+      <a href="CONTRATO-ALQUILER-CASA-RURAL-LA NOBLEZA.pdf" download class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-center" data-i18n="download_contract">Descargar Contrato</a>
+      <a href="PARTE VIAJERO (CORTIJO LA NOBLEZA).pdf" download class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-center" data-i18n="download_part">Descargar Parte de Viajeros</a>
+    </div>
+  </section>
+
+  <!-- Formulario de Solicitud de Reserva -->
+  <section class="max-w-5xl mx-auto px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="text-2xl font-bold text-center mb-6" data-i18n="form_title">Formulario de Solicitud de Reserva</h2>
+    <form id="formReserva" class="space-y-4">
+      <input required type="text" placeholder="Nombre completo" data-i18n-placeholder="form_name" class="w-full p-3 border rounded" />
+      <input required type="email" placeholder="Correo electrónico" data-i18n-placeholder="form_email" class="w-full p-3 border rounded" />
+      <input required type="tel" placeholder="Teléfono" data-i18n-placeholder="form_phone" class="w-full p-3 border rounded" />
+      <input required type="date" placeholder="Fecha de entrada" data-i18n-placeholder="form_checkin" class="w-full p-3 border rounded" />
+      <input required type="date" placeholder="Fecha de salida" data-i18n-placeholder="form_checkout" class="w-full p-3 border rounded" />
+      <input required type="number" placeholder="Número de personas" data-i18n-placeholder="form_people" class="w-full p-3 border rounded" />
+      <textarea placeholder="Comentarios" data-i18n-placeholder="form_comments" class="w-full p-3 border rounded"></textarea>
+      <div class="text-center">
+        <button type="button" onclick="enviarWhatsApp()" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800" data-i18n="form_button">Enviar reserva por WhatsApp</button>
+      </div>
+    </form>
+  </section>
+
+  <div class="fullscreen-gallery" id="fullscreenGallery">
+    <span class="nav-arrow nav-left" onclick="prevImage()">←</span>
+    <img id="galleryImage" src="" alt="Galería" />
+    <span class="nav-arrow nav-right" onclick="nextImage()">→</span>
+  </div>
+
+  <script>
+    // Imágenes para la galería
+    const images = [
+      'images/img1.jpg', 'images/img2.jpg', 'images/img3.jpg',
+      'images/img4.jpg', 'images/img5.jpg', 'images/img6.jpg'
+    ];
+    let currentIndex = 0;
+
+    function openGallery(index) {
+      currentIndex = index;
+      document.getElementById('fullscreenGallery').style.display = 'flex';
+      document.getElementById('galleryImage').src = images[currentIndex];
+    }
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('galleryImage').src = images[currentIndex];
+    }
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById('galleryImage').src = images[currentIndex];
+    }
+    window.addEventListener('keydown', (e) => {
+      if (document.getElementById('fullscreenGallery').style.display === 'flex') {
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'Escape') document.getElementById('fullscreenGallery').style.display = 'none';
+      }
+    });
+
+    function enviarWhatsApp() {
+      const form = document.getElementById('formReserva');
+      const datos = [...form.elements].map(el => el.value).filter(Boolean);
+      const mensaje = `Reserva:\nNombre: ${datos[0]}\nEmail: ${datos[1]}\nTel: ${datos[2]}\nEntrada: ${datos[3]}\nSalida: ${datos[4]}\nPersonas: ${datos[5]}\nComentarios: ${datos[6] || ''}`;
+      const numero = "645466541";
+      const url = `https://wa.me/34${numero}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    }
+
+    // Traducciones
+    const translations = {
+      es: {
+        title: "Cortijo Rural La Nobleza",
+        header_title: "Cortijo Rural La Nobleza",
+        welcome_title: "Bienvenidos a Cortijo Rural La Nobleza",
+        welcome_subtitle: "Un rincón de calma y autenticidad en el corazón de Andalucía",
+        welcome_text_1: "Ubicado entre los montes y olivares de Archidona, el <strong>Cortijo Rural La Nobleza</strong> ofrece una experiencia única para quienes buscan tranquilidad, historia y naturaleza. Un lugar donde el tiempo parece detenerse, y cada amanecer se acompaña del murmullo del campo.",
+        gastronomy_title: "Gastronomía con tradición",
+        gastronomy_text: "Disfruta de la cocina casera de la comarca, desde platos de cuchara hasta embutidos, carnes asadas y quesos locales, acompañados por los mejores aceites de oliva virgen extra.",
+        culture_title: "Entorno cultural y monumental",
+        culture_text: "A pocos minutos encontrarás joyas patrimoniales como la Plaza Ochavada de Archidona, iglesias centenarias y rutas históricas que evocan el pasado árabe y cristiano de la región.",
+        nature_title: "Naturaleza viva",
+        nature_text: "Rodeado de senderos, el cortijo es punto de partida ideal para rutas a pie o en bicicleta. Respira aire puro, contempla los cielos limpios y relájate en el silencio del entorno natural.",
+        connection_title: "Conexión excelente",
+        connection_list: [
+          "A 20 min de Antequera",
+          "A 45 min de Málaga",
+          "A 1 h de Granada",
+          "A 1 h y 15 min de Córdoba",
+          "A 1 h y 45 min de Sevilla"
+        ],
+        welcome_text_2: "<strong>Cortijo La Nobleza</strong> es más que un alojamiento: es una invitación a vivir Andalucía con los cinco sentidos.",
+        gallery_title: "Galería",
+        gallery_button: "Ver más fotos",
+        docs_title: "Documentos importantes",
+        download_contract: "Descargar Contrato",
+        download_part: "Descargar Parte de Viajeros",
+        form_title: "Formulario de Reserva",
+        form_name: "Nombre completo",
+        form_email: "Correo electrónico",
+        form_phone: "Teléfono",
+        form_checkin: "Fecha de entrada",
+        form_checkout: "Fecha de salida",
+        form_people: "Número de personas",
+        form_comments: "Comentarios",
+        form_button: "Enviar reserva por WhatsApp"
+      },
+      en: {
+        title: "La Nobleza Rural Cottage",
+        header_title: "La Nobleza Rural Cottage",
+        welcome_title: "Welcome to La Nobleza Rural Cottage",
+        welcome_subtitle: "A corner of calm and authenticity in the heart of Andalusia",
+        welcome_text_1: "Located among the hills and olive groves of Archidona, <strong>La Nobleza Rural Cottage</strong> offers a unique experience for those seeking tranquility, history, and nature. A place where time seems to stand still, and every sunrise is accompanied by the murmur of the countryside.",
+        gastronomy_title: "Gastronomy with tradition",
+        gastronomy_text: "Enjoy traditional local cuisine, from hearty stews to cured meats, roasted meats, and local cheeses, accompanied by the best extra virgin olive oils.",
+        culture_title: "Cultural and monumental environment",
+        culture_text: "Just minutes away you will find heritage gems such as the Octagonal Square of Archidona, centuries-old churches, and historic routes that evoke the Arab and Christian past of the region.",
+        nature_title: "Living nature",
+        nature_text: "Surrounded by trails, the cottage is an ideal starting point for hiking or biking routes. Breathe pure air, admire the clear skies, and relax in the silence of the natural environment.",
+        connection_title: "Excellent connection",
+        connection_list: [
+          "20 min from Antequera",
+          "45 min from Málaga",
+          "1 h from Granada",
+          "1 h 15 min from Córdoba",
+          "1 h 45 min from Sevilla"
+        ],
+        welcome_text_2: "<strong>La Nobleza Rural Cottage</strong> is more than just accommodation: it is an invitation to experience Andalusia with all five senses.",
+        gallery_title: "Gallery",
+        gallery_button: "See more photos",
+        docs_title: "Important documents",
+        download_contract: "Download Contract",
+        download_part: "Download Traveler's Form",
+        form_title: "Booking Form",
+        form_name: "Full Name",
+        form_email: "Email",
+        form_phone: "Phone",
+        form_checkin: "Check-in Date",
+        form_checkout: "Check-out Date",
+        form_people: "Number of guests",
+        form_comments: "Comments",
+        form_button: "Send booking via WhatsApp"
+      },
+      fr: {
+        title: "Gîte Rural La Nobleza",
+        header_title: "Gîte Rural La Nobleza",
+        welcome_title: "Bienvenue au Gîte Rural La Nobleza",
+        welcome_subtitle: "Un coin de calme et d'authenticité au cœur de l'Andalousie",
+        welcome_text_1: "Situé parmi les collines et les oliveraies d'Archidona, le <strong>Gîte Rural La Nobleza</strong> offre une expérience unique pour ceux qui recherchent tranquillité, histoire et nature. Un lieu où le temps semble s'arrêter, et chaque lever de soleil est accompagné du murmure de la campagne.",
+        gastronomy_title: "Gastronomie traditionnelle",
+        gastronomy_text: "Profitez de la cuisine locale traditionnelle, des plats copieux aux charcuteries, viandes rôties et fromages locaux, accompagnés des meilleurs huiles d'olive extra vierge.",
+        culture_title: "Environnement culturel et monumental",
+        culture_text: "À quelques minutes, vous trouverez des joyaux du patrimoine tels que la Place Octogonale d'Archidona, des églises centenaires et des routes historiques évoquant le passé arabe et chrétien de la région.",
+        nature_title: "Nature vivante",
+        nature_text: "Entouré de sentiers, le gîte est un point de départ idéal pour les randonnées à pied ou à vélo. Respirez l'air pur, admirez les ciels clairs et détendez-vous dans le silence de la nature environnante.",
+        connection_title: "Excellente connexion",
+        connection_list: [
+          "À 20 min d'Antequera",
+          "À 45 min de Málaga",
+          "À 1 h de Grenade",
+          "À 1 h 15 min de Córdoba",
+          "À 1 h 45 min de Séville"
+        ],
+        welcome_text_2: "<strong>Le Gîte La Nobleza</strong> est plus qu'un hébergement : c'est une invitation à vivre l'Andalousie avec les cinq sens.",
+        gallery_title: "Galerie",
+        gallery_button: "Voir plus de photos",
+        docs_title: "Documents importants",
+        download_contract: "Télécharger le contrat",
+        download_part: "Télécharger le formulaire voyageur",
+        form_title: "Formulaire de réservation",
+        form_name: "Nom complet",
+        form_email: "E-mail",
+        form_phone: "Téléphone",
+        form_checkin: "Date d'arrivée",
+        form_checkout: "Date de départ",
+        form_people: "Nombre de personnes",
+        form_comments: "Commentaires",
+        form_button: "Envoyer la réservation via WhatsApp"
+      },
+      de: {
+        title: "La Nobleza Landhaus",
+        header_title: "La Nobleza Landhaus",
+        welcome_title: "Willkommen im La Nobleza Landhaus",
+        welcome_subtitle: "Eine Ecke der Ruhe und Authentizität im Herzen Andalusiens",
+        welcome_text_1: "Gelegen zwischen den Hügeln und Olivenhainen von Archidona, bietet das <strong>La Nobleza Landhaus</strong> ein einzigartiges Erlebnis für diejenigen, die Ruhe, Geschichte und Natur suchen. Ein Ort, an dem die Zeit stillzustehen scheint und jeder Sonnenaufgang vom Murmeln der Landschaft begleitet wird.",
+        gastronomy_title: "Gastronomie mit Tradition",
+        gastronomy_text: "Genießen Sie die traditionelle lokale Küche, von herzhaften Eintöpfen bis hin zu Wurstwaren, Braten und lokalen Käsesorten, begleitet von den besten nativen Olivenölen extra.",
+        culture_title: "Kulturelles und monumentales Umfeld",
+        culture_text: "Nur wenige Minuten entfernt finden Sie Kulturschätze wie den Oktaedrischen Platz von Archidona, jahrhundertealte Kirchen und historische Routen, die an die arabische und christliche Vergangenheit der Region erinnern.",
+        nature_title: "Lebendige Natur",
+        nature_text: "Umgeben von Wanderwegen ist das Landhaus ein idealer Ausgangspunkt für Wander- oder Fahrradtouren. Atmen Sie reine Luft, bewundern Sie den klaren Himmel und entspannen Sie sich in der Stille der Natur.",
+        connection_title: "Ausgezeichnete Anbindung",
+        connection_list: [
+          "20 Min. von Antequera",
+          "45 Min. von Málaga",
+          "1 Std. von Granada",
+          "1 Std. 15 Min. von Córdoba",
+          "1 Std. 45 Min. von Sevilla"
+        ],
+        welcome_text_2: "<strong>La Nobleza Landhaus</strong> ist mehr als nur eine Unterkunft: Es ist eine Einladung, Andalusien mit allen Sinnen zu erleben.",
+        gallery_title: "Galerie",
+        gallery_button: "Mehr Fotos ansehen",
+        docs_title: "Wichtige Dokumente",
+        download_contract: "Vertrag herunterladen",
+        download_part: "Reiseformular herunterladen",
+        form_title: "Buchungsformular",
+        form_name: "Vollständiger Name",
+        form_email: "E-Mail",
+        form_phone: "Telefon",
+        form_checkin: "Anreisedatum",
+        form_checkout: "Abreisedatum",
+        form_people: "Anzahl der Gäste",
+        form_comments: "Kommentare",
+        form_button: "Buchung per WhatsApp senden"
+      }
+    };
+
+    function cambiarIdioma(lang) {
+      if (!translations[lang]) return;
+      document.documentElement.lang = lang;
+
+      // Cambia títulos y textos con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = translations[lang][key];
+        if (val !== undefined) {
+          // Permite html en textos como welcome_text_1
+          el.innerHTML = Array.isArray(val) ? val.map(item => `<li>${item}</li>`).join('') : val;
+        }
+      });
+
+      // Cambia placeholders con data-i18n-placeholder
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const val = translations[lang][key];
+        if (val !== undefined) {
+          el.placeholder = val;
+        }
+      });
+
+      // Cambia título de la pestaña
+      if (translations[lang].title) {
+        document.title = translations[lang].title;
+      }
+    }
+
+    // Inicializa idioma predeterminado español
+    cambiarIdioma('es');
+  </script>
+  <footer style="margin-top: 40px; padding: 20px; background-color: #f5f5f5; text-align: center; font-size: 14px; color: #333;">
+  <p>Correo electrónico: <a href="mailto:cortijolanobleza@gmail.com">cortijolanobleza@gmail.com</a></p>
+  <p>Facebook: <a href="https://www.facebook.com/CortijoRuralNoblezaCR" target="_blank" rel="noopener noreferrer">Cortijo Rural Nobleza CR (Cortijo Rural La Nobleza)</a></p>
+</footer>
+</body>
+</html>
