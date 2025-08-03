@@ -156,10 +156,12 @@
   </section>
 
   <div class="fullscreen-gallery" id="fullscreenGallery">
+    <button onclick="document.getElementById('fullscreenGallery').style.display='none'" 
+            class="text-white text-4xl absolute top-6 right-6 z-50">&times;</button>
     <span class="nav-arrow nav-left" onclick="prevImage()">←</span>
     <img id="galleryImage" src="" alt="Galería" />
     <span class="nav-arrow nav-right" onclick="nextImage()">→</span>
-  </div>
+  </div> 
 
   <script>
     // Imágenes para la galería
@@ -245,6 +247,19 @@
         if (e.key === 'ArrowLeft') prevImage();
       }
     });
+   // Gesto táctil para cerrar galería en móviles
+   let touchStartY = 0;
+
+   document.getElementById('fullscreenGallery').addEventListener('touchstart', function(e) {
+     touchStartY = e.touches[0].clientY;
+   }, false);
+
+  document.getElementById('fullscreenGallery').addEventListener('touchend', function(e) {
+    const touchEndY = e.changedTouches[0].clientY;
+    if (touchEndY - touchStartY > 100) { // deslizar hacia abajo
+      this.style.display = 'none';
+    }
+}, false);
 
         function enviarWhatsApp() {
       const form = document.getElementById('formReserva');
